@@ -155,7 +155,7 @@ async function checkChain() {
 }
 
 async function loadInfo() {
-  window.info = await window.contract.methods.getInfo().call;
+  window.info = await window.contract.methods.getInfo().call();
   const publicMintActive = await contract.methods.mintingActive().call();
   const presaleMintActive = await contract.methods.presaleActive().call();
   const mainHeading = document.getElementById("mainHeading");
@@ -279,12 +279,12 @@ function setTotalPrice() {
   const mintInputValue = parseInt(mintInput.value);
   const totalPrice = document.getElementById("totalPrice");
   const mintButton = document.getElementById("mintButton");
-  if(mintInputValue < 1 || mintInputValue > info.deploymentConfig.tokensPerMint) {
-    totalPrice.innerText = 'INVALID QUANTITY';
-    mintButton.disabled = true;
-    mintInput.disabled = true;
-    return;
-  }
+  // if(mintInputValue < 1 || mintInputValue > info.deploymentConfig.tokensPerMint) {
+  //   totalPrice.innerText = 'INVALID QUANTITY';
+  //   mintButton.disabled = true;
+  //   mintInput.disabled = true;
+  //   return;
+  // }
   const totalPriceWei = BigInt(info.runtimeConfig.publicMintPrice) * BigInt(mintInputValue);
   
   let priceType = '';
